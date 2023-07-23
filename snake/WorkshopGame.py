@@ -1,12 +1,17 @@
+import os.path
+from os.path import join as join_path
 from random import randrange
 
 import pyglet
+
+# Find directory of current module.
+APPDIR = os.path.dirname(__file__)
 
 window = pyglet.window.Window()
 #label = pyglet.text.Label("Hello", x=10, y=20) 
 
 def load_image(name):
-    return pyglet.image.load("..\\" + name + ".png")
+    return pyglet.image.load(join_path(APPDIR, "..", name + ".png"))
 
 green_image = load_image("green")
 apple_image = load_image("apple")
@@ -15,7 +20,7 @@ snake_tiles = {}
 for start in ["bottom","end","left","right","top"]:
     for end in ["bottom","end","left","right","top","tongue","dead"]:
             key= start + "-" + end
-            image = load_image("snake-tiles\\" + key)
+            image = load_image(join_path("snake-tiles", key))
             snake_tiles[key] = image
 
 TILE_SIZE = 60
