@@ -148,6 +148,6 @@ def on_draw():
     window.clear()
     game.draw()
     
-pyglet.clock.schedule_interval(game.move, 1/5)
+pyglet.clock.schedule_interval(game.move, 1/2)
 
 pyglet.app.run()
