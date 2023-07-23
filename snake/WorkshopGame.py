@@ -76,11 +76,13 @@ class GameState:
         if not self.alive:
             return
             
+        tile_count_x = window.width // TILE_SIZE
+        tile_count_y = window.height // TILE_SIZE
         head = self.snake[-1]
         x, y = head 
         direction_x, direction_y = self.direction
-        new_x = x + direction_x
-        new_y = y + direction_y
+        new_x = (x + direction_x) % tile_count_x
+        new_y = (y + direction_y) % tile_count_y
         new_head = new_x, new_y
        
         if new_head in self.snake:
@@ -141,6 +143,8 @@ def on_key_press(key_code, modifier):
         game.direction = -1, 0
     elif key_code == pyglet.window.key.RIGHT:
         game.direction = +1, 0
+    elif key_code == ord("q"):
+        pyglet.app.exit()
 
 
 @window.event
