@@ -26,6 +26,9 @@ for start in ["bottom","end","left","right","top"]:
 TILE_SIZE = 60
 
 def direction (a, b):
+    """
+    Berechnet die Richtung in die die Schlange sich bewegt.
+    """
     if b == "end":
         return "end"
     x_a, y_a = a
@@ -43,6 +46,9 @@ def direction (a, b):
 
 class GameState:
     def draw(self):
+        """
+        Zeichnet SnakeGame im Fenster.
+        """
         for coords, prev, next in zip(
             self.snake,
             ['end'] + self.snake[:-1],
@@ -64,6 +70,9 @@ class GameState:
                             height=TILE_SIZE)
                             
     def move(self, dt):
+        """
+        Bewegt die Schlange ein Feld weiter.
+        """
         if not self.alive:
             return
             
@@ -97,6 +106,9 @@ class GameState:
  
  
     def add_food(self):
+        """
+        Fügt neue Nahrung in zufälligem Feld hinzu.
+        """
         for i in range (100):
             new_x = randrange (window.width // TILE_SIZE)
             new_y = randrange (window.height // TILE_SIZE)
@@ -118,6 +130,9 @@ game.alive = True
 
 @window.event
 def on_key_press(key_code, modifier):
+    """
+    Steuerung über die Pfeiltasten.
+    """
     if key_code == pyglet.window.key.UP:
         game.direction = 0, +1
     elif key_code == pyglet.window.key.DOWN:
