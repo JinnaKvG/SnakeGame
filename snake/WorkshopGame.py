@@ -96,6 +96,8 @@ class GameState:
         elif new_y >= window.height // TILE_SIZE:
             self.alive = False
 
+        self.snake.append(new_head)
+
         if new_head in self.food:
             #consume the food
             self.food.remove(new_head)
@@ -103,9 +105,7 @@ class GameState:
         else:
             # Did not eat; remove the tail tile
             del self.snake[0]
-            
-        self.snake.append(new_head)
- 
+             
  
     def add_food(self):
         """
