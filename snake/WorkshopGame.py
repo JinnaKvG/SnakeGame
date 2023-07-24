@@ -73,7 +73,7 @@ class GameState:
         """
         Bewegt die Schlange ein Feld weiter.
         """
-        if not self.alive:
+        if self.stop or not self.alive:
             return
             
         tile_count_x = window.width // TILE_SIZE
@@ -129,6 +129,7 @@ game.add_food()
 game.direction = + 1,0 #to the right
 game.direction = 0, +1 #up
 game.alive = True
+game.stop = False
 
 @window.event
 def on_key_press(key_code, modifier):
@@ -142,6 +143,9 @@ def on_key_press(key_code, modifier):
     elif key_code == pyglet.window.key.LEFT:
         game.direction = -1, 0
     elif key_code == pyglet.window.key.RIGHT:
+        game.direction = +1, 0
+    elif key_code == ord(" "):
+        game.stop = not game.stop
         game.direction = +1, 0
     elif key_code == ord("q"):
         pyglet.app.exit()
